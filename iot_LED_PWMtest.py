@@ -8,7 +8,7 @@ def Setup(gGPIOnum, frequency):
     GPIO.setup(gGPIOnum, GPIO.OUT)
 
     gGPIOnum = GPIO.PWM(gGPIOnum, frequency)
-    gGPIOnum.start(0)
+    gGPIOnum.start(0)/*123456*/
 
 if __name__ == "__main__":
     try:
