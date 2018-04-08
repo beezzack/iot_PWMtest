@@ -1,0 +1,61 @@
+import RPi.GPIO as GPIO
+import time
+GPIO.setmode(GPIO.BCM)
+
+
+def LED_on(GPIOnum):
+    GPIO.setmode(GPIO.BCM)
+    GPIO.output(GPIOnum, GPIO.HIGH)
+
+def LED_off(GPIOnum):
+    GPIO.setmode(GPIO.BCM)
+    GPIO.output(GPIOnum, GPIO.LOW)
+
+def passing():
+    GPIO.setmode(GPIO.BCM)
+    LED_off(17)
+    LED_off(22)
+    LED_on(10)
+    LED_on(13)
+    time.sleep(5)
+    LED_off(10)
+    LED_off(13)
+    LED_on(5)
+    LED_on(11)
+    time.sleep(15)
+    LED_off(5)
+    LED_off(11)
+    LED_on(17)
+    LED_on(22)
+
+def setupPIM(GPIOnum):
+    GPIO.setup(GPIOnum, GPIO.IN, pull_up_down = GPIO.PUD_DOWN)
+
+counter = 0
+def motion(GPIOnum):
+    global counter
+
+    if GPIO.input(GPIOnum):
+        counter += 1
+        print("Motion detected {0}".format(counter))
+        passing()
+
+    else:
+        print("Motion not detected")
+
+try:
+    setupPIM(14)
+    GPIO.setup(5, GPIO.OUT)#R
+    GPIO.setup(13, GPIO.OUT)#Y
+    GPIO.setup(17, GPIO.OUT)#G
+    GPIO.setup(22, GPIO.OUT)#R
+    GPIO.setup(10, GPIO.OUT)#Y
+    GPIO.setup(11, GPIO.OUT)#G
+    LED_on(17)
+    LED_on(22)
+    GPIO.add_event_detect(14, GPIO.BOTH, callback=motion, bouncetime=200)
+    while True:
+        time.sleep(1)
+
+except:
+    GPIO.cleanup()
