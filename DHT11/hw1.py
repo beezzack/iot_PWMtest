@@ -13,10 +13,11 @@ pygame.init()
 pygame.mixer.music.load("beep.mp3")
 
 try:
+    LED.Setup(10, "OUT")#G
+    LED.Setup(5, "OUT")#Y
+    LED.Setup(13, "OUT")#R
     while True:
-        LED.Setup(10, "OUT")
-        LED.Setup(5, "OUT")
-        LED.Setup(13, "OUT")
+
         currentTime = time.strftime("%H:%M:%S")
 
 
