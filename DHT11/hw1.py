@@ -7,7 +7,7 @@ import sys, pygame
 
 sensor = Adafruit_DHT.DHT11
 
-GPIO = 14
+GPIO_num = 14
 theLED = 0
 pygame.init()
 pygame.mixer.music.load("beep.mp3")
@@ -20,7 +20,7 @@ try:
         currentTime = time.strftime("%H:%M:%S")
 
 
-        humidity, temperature = Adafruit_DHT.read_retry(sensor, GPIO)
+        humidity, temperature = Adafruit_DHT.read_retry(sensor, GPIO_num)
 
         if temperature is not None:
             print(currentTime,'-> Temp={0}*C '.format(temperature))
