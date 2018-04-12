@@ -63,7 +63,7 @@ try:
             elif heatstrokeCoef <= 29:
                 LED.TurnOnLED(10)
                 time.sleep(4)
-                TurnOffLED(10)
+                LED.TurnOffLED(10)
         else:
             print('Failed to get reading. Try again')
         time.sleep(5)
