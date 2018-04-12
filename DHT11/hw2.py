@@ -1,3 +1,4 @@
+import RPi.GPIO as GPIO
 import Adafruit_DHT
 import time
 import math
@@ -6,7 +7,7 @@ import sys, pygame
 
 sensor = Adafruit_DHT.DHT11
 
-GPIO = 14#溼度sensor
+#溼度sensor
 pygame.init()
 pygame.mixer.music.load("beep.mp3")
 
@@ -32,7 +33,7 @@ try:
     while True:
         currentTime = time.strftime("%H:%M:%S")
 
-        humidity, temperature = Adafruit_DHT.read_retry(sensor, GPIO)
+        humidity, temperature = Adafruit_DHT.read_retry(sensor, 14)#sensor
         dewpoint = Dewpoint(temperature,humidity)
         heatstrokeCoef = HeatstrokeCoefficient(temperature, humidity)
 
@@ -41,27 +42,32 @@ try:
             if heatstrokeCoef >= 40:
                 GPIO.add_event_detect(22, GPIO.BOTH, callback=motion, bouncetime=200)
                 for num in (1,4):
-                    TurnOnLED(13)
-                    sleep(0.5)
-                    TurnOffLED(13)
-                    sleep(0.5)
+                    LED.TurnOnLED(13)
+                    time.sleep(0.5)
+                    LED.TurnOffLED(13)
+                    time.sleep(0.5)
                 GPIO.remove_event_detect(22)
-            elif heatstrokeCoef >=35 and heatstrokeCoef <=39:
+                
+            elif heatstrokeCoef >=35 and heatstrokeCoef <= 39:
                 GPIO.add_event_detect(22, GPIO.BOTH, callback=motion, bouncetime=200)
-                TurnOnLED(13)
-                sleep(4)
-                TurnOffLED(13)
+                LED.TurnOnLED(13)
+                time.sleep(4)
+                LED.TurnOffLED(13)
                 GPIO.remove_event_detect(22)
-            elif heatstrokeCoef >=30 and heatstrokeCoef <=34:
-                TurnOnLED(5)
-                sleep(4)
-                TurnOffLED(5)
+                
+            elif heatstrokeCoef >=30 and heatstrokeCoef <= 34:
+                LED.TurnOnLED(5)
+                time.sleep(4)
+                LED.TurnOffLED(5)
+                
             elif heatstrokeCoef <= 29:
-                TurnOnLED(10)
-                sleep(4)
+                LED.TurnOnLED(10)
+                time.sleep(4)
                 TurnOffLED(10)
         else:
             print('Failed to get reading. Try again')
         time.sleep(5)
-except:
+except(KeyboardInterrupt):
+    GPIO.cleanup()
+finally:
     GPIO.cleanup()
