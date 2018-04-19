@@ -28,5 +28,5 @@ try:
     while True:
         time.sleep(1)
 
-except KeyboardInterrupt:
+except :
     GPIO.cleanup()
