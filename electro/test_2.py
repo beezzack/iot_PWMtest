@@ -1,6 +1,6 @@
 import RPi.GPIO as GPIO
 import time
-import TurnOnLED
+import LED
 
 LED.Setup(2, "OUT")
 LED.Setup(3, "OUT")
