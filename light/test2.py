@@ -13,7 +13,7 @@ spi.max_speed_hz = 1000000
 def readadc(adcnum):
     if adcnum >7 or adcnum <0:
         return -1
-    r = spi.xder2([1, 8 + adcum << 4, 0])
+    r = spi.xfer2([1, 8 + adcnum << 4, 0])
     data = ((r[1] & 3) << 8) + r[2]
     return data
 

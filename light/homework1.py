@@ -15,7 +15,7 @@ spi.max_speed_hz = 1000000
 def readadc(adcnum):
     if adcnum >7 or adcnum <0:
         return -1
-    r = spi.xder2([1, 8 + adcum << 4, 0])
+    r = spi.xfer2([1, 8 + adcnum << 4, 0])
     data = ((r[1] & 3) << 8) + r[2]
     return data
 
@@ -23,26 +23,26 @@ while True:
     ldr_value = readadc(ldr_channel)
     print("-----------------------------------")
     print("LDR Value: %d" % ldr_value)
-    if ldr_value >= 424 and ldr_value <= 428:
-        pygame.mixer.music.load("sol.wav")
-        pygame.mixer.music.play(1)
-    else if ldr_value >= 456 and ldr_value <= 463:
+    if ldr_value >= 455 and ldr_value <= 465:
         pygame.mixer.music.load("la.wav")
         pygame.mixer.music.play(1)
-    else if ldr_value >= 438 and ldr_value <= 440:
+    elif ldr_value >= 435 and ldr_value <= 445:
         pygame.mixer.music.load("si.wav")
         pygame.mixer.music.play(1)
-    else if ldr_value >= 383 and ldr_value <= 387:
-        pygame.mixer.music.load("fa.wav")
-        pygame.mixer.music.play(1)
-    else if ldr_value >= 338 and ldr_value <= 342:
-        pygame.mixer.music.load("mi.wav")
-        pygame.mixer.music.play(1)
-    else if ldr_value >= 371 and ldr_value <= 377:
-        pygame.mixer.music.load("re.wav")
-        pygame.mixer.music.play(1)
-    else if ldr_value >= 395 and ldr_value <= 422:
+    elif ldr_value >= 410 and ldr_value <= 420:
         pygame.mixer.music.load("sol.wav")
         pygame.mixer.music.play(1)
+    elif ldr_value >= 385 and ldr_value <= 390:
+        pygame.mixer.music.load("fa.wav")
+        pygame.mixer.music.play(1)
+    elif ldr_value >= 315 and ldr_value <= 340:
+        pygame.mixer.music.load("mi.wav")
+        pygame.mixer.music.play(1)
+    elif ldr_value >= 345 and ldr_value < 380:
+        pygame.mixer.music.load("re.wav")
+        pygame.mixer.music.play(1)
+    elif ldr_value >= 425 and ldr_value <= 435:
+        pygame.mixer.music.load("do.wav")
+        pygame.mixer.music.play(1)    
 
     time.sleep(delay)

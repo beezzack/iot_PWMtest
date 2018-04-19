@@ -26,20 +26,21 @@ def Setup(GPIOnum, frequency):
 def readadc(adcnum):
     if adcnum >7 or adcnum <0:
         return -1
-    r = spi.xder2([1, 8 + adcum << 4, 0])
+    r = spi.xfer2([1, 8 + adcnum << 4, 0])
     data = ((r[1] & 3) << 8) + r[2]
     return data
 
-def changeDutyCycle(dc):
-    gGPIOnum.changeDutyCycle(dc)
-    time.sleep(0.1)
+    
+    
 
 def max_min_normalization(input_data):
-    new_data = (input_data - 420)/(1023-420)*(100-0)+0
+    new_data = (input_data - 420)/(1023-420)*(100)+0
+    print(new_data)
     return new_data
 
 def PWM(data):
-    LEDPWM.changeDutyCycle(data)
+    gGPIOnum.ChangeDutyCycle(data)
+    time.sleep(0.1)
 
 Setup(15, 100)
 while True:

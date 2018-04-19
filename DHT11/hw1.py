@@ -24,8 +24,8 @@ try:
 
         humidity, temperature = Adafruit_DHT.read_retry(sensor, GPIO_num)
 
-        if temperature is not None:
-            print(currentTime,'-> Temp={0}*C '.format(temperature))
+        if temperature is not None and humidity is not None:
+            print(currentTime,'-> Temp={0}*C humi={1}'.format(temperature, humidity))
 
             if(temperature>=31):
                 if theLED>0:
