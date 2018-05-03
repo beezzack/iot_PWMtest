@@ -9,9 +9,9 @@ from email.mime.image import MIMEImage
 from email.mime.text import MIMEText
 
 emailfrom = "cliff860429@gmail.com"
-emailfrom = "cliff860429@gmail.com"
+emailto = "cliff860429@gmail.com"
 
-fileToSend = "test"
+fileToSend = "test123"
 username = emailfrom
 password = "j;6rmp u.4"
 
