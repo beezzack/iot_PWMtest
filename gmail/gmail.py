@@ -11,9 +11,9 @@ from email.mime.text import MIMEText
 emailfrom = "cliff860429@gmail.com"
 emailto = "cliff860429@gmail.com"
 
-fileToSend = "test123"
+fileToSend = "test.txt"
 username = emailfrom
-password = "j;6rmp u.4"
+password = "cliff3874161"
 
 msg = MIMEMultipart()
 msg["From"]=emailfrom
@@ -28,7 +28,7 @@ ctype, encoding = mimetypes.guess_type(fileToSend)
 if ctype is None or encoding is not None:
     ctype="application/octet-stream"
 maintype,subtype=ctype.split("/",1)
-
+print(maintype)
 if maintype == "text":
     fp = open(fileToSend)
     attachment = MIMEText(fp.read(),_subtype=subtype)
