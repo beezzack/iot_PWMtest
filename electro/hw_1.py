@@ -2,12 +2,17 @@ import RPi.GPIO as GPIO
 import time
 import LED
 
-
+def SetupPhotoresistor(GPIOpin):
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setup(GPIOpin,GPIO.IN)
+    
 def turnOnOffLED(GPIOpin, LDR_DO):
-    if LDT_DO == 1:
-        return True;
+    if LDR_DO == 1:
+        print("Dark")
+        LED.TurnOnLED(GPIOpin)
     else:
-        return False;
+        print("light")
+        LED.TurnOffLED(GPIOpin)
 
 def setup(GPIOnum):
     GPIO.setmode(GPIO.BCM)
@@ -18,24 +23,21 @@ counter = 0
 
 def motion(GPIOnum):
     global counter
-    if turnOnOffLED(26) == True:
-        print("NOT LIGHT")
-        if GPIO.input(GPIOnum):
-            counter += 1
-            LED.TurnOnLED(2)
-            print("Motion detected{0}".format(counter))
+    if GPIO.input(GPIOnum):
+        counter += 1
+        turnOnOffLED(2,GPIO.input(26))
+        print("Motion detected{0}".format(counter))
 
-        else:
-            LED.TurnOffLED(2)
-            print("Motion not detected")
     else:
-        print("LIGHT")
+        print("Motion not detected")
+    
 
-
-try:
+if __name__ == "__main__":
     LED.Setup(2,"OUT")
+    SetupPhotoresistor(26)
     setup(14)
-    GPIO.add_event_detect(14, GPIO.BOTH, callback = motion, bouncetime = 150)
+try:
+    GPIO.add_event_detect(14, GPIO.BOTH, callback = motion, bouncetime = 500)
     while True:
         time.sleep(1)
 
