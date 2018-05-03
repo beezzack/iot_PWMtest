@@ -16,7 +16,7 @@ res = decode_header(mail['From'])
 emailadd, charset = res[1]
 emailfrom = emailadd.decode('big5')
 
-if emailfrom == '<cliff860429@gmail.com>':
+if "cliff860429@gmail.com" in emailfrom:
     LED.Setup(2, 'OUT')
     LED.TurnOnLED(2)
 
