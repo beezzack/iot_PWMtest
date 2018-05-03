@@ -7,6 +7,7 @@ import LED
 
 inspect.getmro(impalib.IMAP4_SSL)
 imap = imaplib.IMAP4_SSL
+imap.login('cliff860429@gmail.com','cliff3874161')
 state, count = imap.select('Inbox')
 resp, mails = imap.search(None, 'ALL')
 resp, data = imap.fetch(mails[0].spilt()[len(mails[0].split())-1], '(RFC822)')
