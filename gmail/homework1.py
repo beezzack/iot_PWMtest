@@ -47,7 +47,7 @@ def send_msg(recipient_id, message_text):
     print(resp.content)
 
 def log(message):
-    print(message)
+    #print(message)
     sys.stdout.flush()
 #--------------------------------------------------------------------------
 def SetupPhotoresistor(GPIOpin):
@@ -83,7 +83,7 @@ if __name__=='__main__':
 try:
     GPIO.add_event_detect(14, GPIO.BOTH, callback = motion, bouncetime = 500)
     while True:
-        time.sleep(1)
+        time.sleep(20)
 
 except :
     GPIO.cleanup()
