@@ -13,7 +13,7 @@ def verify():
     if request.atgs.get("hub.mode") == "subscribe" and request.args.get("hub.challenge"):
         if not request.args.get("hub.verify_token") == "Educational_Robots_and_Iots" :
             return "Verification token mismatch", 403
-        return return.args["hub.challenge"], 200
+        return request.args["hub.challenge"], 200
     return "Hello woeld", 200
 
 @app.route("/", methods=['POST'])
