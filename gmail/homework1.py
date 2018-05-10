@@ -91,8 +91,8 @@ def add_event():
     except :
         GPIO.cleanup()
 if __name__=='__main__':
-    p1 = mp.process(target=app_run)
-    p2 = mp.process(target=app_run)
+    p1 = mp.Process(target=app_run,args=())
+    p2 = mp.Process(target=app_run,args=())
     p1.start()
     p2.start()
     p1.join()
