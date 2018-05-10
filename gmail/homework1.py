@@ -76,14 +76,10 @@ def motion(GPIOnum):
     else:
         print("Motion not detected")
 if __name__=='__main__':
-    app.run(debug=True, port=80)
     LED.Setup(2,"OUT")
     SetupPhotoresistor(26)
     setup(14)
-try:
     GPIO.add_event_detect(14, GPIO.BOTH, callback = motion, bouncetime = 500)
+    app.run(debug=True, port=80)
     while True:
         time.sleep(20)
-
-except :
-    GPIO.cleanup()
