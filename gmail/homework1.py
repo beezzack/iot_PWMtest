@@ -80,7 +80,10 @@ def motion(GPIOnum):
 def app_run():
     app.run(debug=True, port=80)
 
-def add_event():
+
+if __name__=='__main__':
+    p1 = mp.Process(target=app_run)
+    p1.start()
     LED.Setup(2,"OUT")
     SetupPhotoresistor(26)
     setup(14)
@@ -90,10 +93,4 @@ def add_event():
             time.sleep(1)
     except :
         GPIO.cleanup()
-if __name__=='__main__':
-    p1 = mp.Process(target=app_run)
-    p2 = mp.Process(target=add_event)
-    p1.start()
-    p2.start()
     p1.join()
-    p2.join()
