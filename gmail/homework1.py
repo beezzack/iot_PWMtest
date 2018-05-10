@@ -9,7 +9,6 @@ import time
 app = Flask(__name__)
 
 ACCESS_TOKEN = "EAAClXHJ0bQkBAG8JrgjTvfiEiWBLciUdPPZBbak6pUTZB7eZAJ6HYtwgYYoBRTP9hxYIunbAKXtiQRPdZBjZC0xu7IDJu3ZA9ZA2ZBowh1RLzE7wFAQmZANMP47dQlt5zEQxPU2nquUeZCZA9DjZC5Pi43i1ZBFtXOYa67GArkoXtVAAyyQZDZD"
-
 @app.route('/', methods=['GET'])
 def verify():
     if request.args.get("hub.mode") == "subscribe" and request.args.get("hub.challenge"):
@@ -29,13 +28,13 @@ def webhook():
 
                 if msg_event.get("message"):
                     message_text = msg_event["message"]["text"]
-                    print(message_text)
+                    #print(message_text)
                     if message_text == "turn off led":
-                        LED.Setup(23,"OUT")
-                        LED.TurnOffLED(23)
+                        LED.Setup(2,"OUT")
+                        LED.TurnOffLED(2)
                         send_msg("1447614532010378", "turn off led")
 
-                    print(message_text)
+                    #print(message_text)
     log(data)
     return "ok",200
 
