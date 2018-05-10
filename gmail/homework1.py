@@ -34,11 +34,11 @@ def webhook():
                     if message_text == "turn off led":
                         LED.Setup(2,"OUT")
                         LED.TurnOffLED(2)
-                        check = 0
                         send_msg("1447614532010378", "turn off led")
 
                     #print(message_text)
     log(data)
+    check = 0
     return "ok",200
 
 def send_msg(recipient_id, message_text):
