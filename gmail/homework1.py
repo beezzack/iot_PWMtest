@@ -38,7 +38,6 @@ def webhook():
 
                     #print(message_text)
     log(data)
-    check = 0
     return "ok",200
 
 def send_msg(recipient_id, message_text):
@@ -79,8 +78,6 @@ def motion(GPIOnum):
             print("Motion detected{0}".format(counter))
             send_msg("1447614532010378", "led is on")
             check = 1
-        else:
-            print("Motion detected{0} but is already light up".format(counter))
     else:
         print("Motion not detected")
 
