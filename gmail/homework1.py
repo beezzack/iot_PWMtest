@@ -6,6 +6,7 @@ sys.path.append("../")
 import LED
 import RPi.GPIO as GPIO
 import time
+import multiprocessing as mp
 app = Flask(__name__)
 
 ACCESS_TOKEN = "EAAClXHJ0bQkBAG8JrgjTvfiEiWBLciUdPPZBbak6pUTZB7eZAJ6HYtwgYYoBRTP9hxYIunbAKXtiQRPdZBjZC0xu7IDJu3ZA9ZA2ZBowh1RLzE7wFAQmZANMP47dQlt5zEQxPU2nquUeZCZA9DjZC5Pi43i1ZBFtXOYa67GArkoXtVAAyyQZDZD"
@@ -75,13 +76,24 @@ def motion(GPIOnum):
         send_msg("1447614532010378", "led is on")
     else:
         print("Motion not detected")
-if __name__=='__main__':
+
+def app_run():
+    app.run(debug=True, port=80)
+
+def add_event():
     LED.Setup(2,"OUT")
     SetupPhotoresistor(26)
     setup(14)
-    app.run(debug=True, port=80)
-    while True:
-        if not 'event' in locals():
-            time.sleep(10)
-        else :
-            GPIO.add_event_detect(14, GPIO.BOTH, callback = motion, bouncetime = 500)
+    try:
+        GPIO.add_event_detect(14, GPIO.BOTH, callback = motion, bouncetime = 500)
+        while True:
+            time.sleep(1)
+    except :
+        GPIO.cleanup()
+if __name__=='__main__':
+    p1 = mp.process(target=app_run)
+    p2 = mp.process(target=app_run)
+    p1.start()
+    p2.start()
+    p1.join()
+    p2.join()
