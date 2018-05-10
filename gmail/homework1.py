@@ -70,14 +70,13 @@ def setup(GPIOnum):
 counter = 0
 
 def motion(GPIOnum):
-    global counter,check
+    global counter
     if GPIO.input(GPIOnum):
         counter += 1
         if check == 0:
             turnOnOffLED(2,GPIO.input(26))
             print("Motion detected{0}".format(counter))
             send_msg("1447614532010378", "led is on")
-            check = 1
     else:
         print("Motion not detected")
 
@@ -94,7 +93,7 @@ if __name__=='__main__':
     try:
         GPIO.add_event_detect(14, GPIO.BOTH, callback = motion, bouncetime = 2000)
         while True:
-            time.sleep(1)
+            time.sleep(2)
     except :
         GPIO.cleanup()
     p1.join()
