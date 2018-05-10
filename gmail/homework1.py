@@ -83,6 +83,5 @@ if __name__=='__main__':
     while True:
         if not 'event' in locals():
             time.sleep(10)
-            GPIO.add_event_detect(14, GPIO.BOTH, callback = motion, bouncetime = 500)
         else :
             GPIO.add_event_detect(14, GPIO.BOTH, callback = motion, bouncetime = 500)
