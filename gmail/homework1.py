@@ -71,7 +71,7 @@ def motion(GPIOnum):
     global counter
     if GPIO.input(GPIOnum):
         counter += 1
-        if GPIO.input(2) is not True:
+        if GPIO.output(2) is not True:
             turnOnOffLED(2,GPIO.input(26))
             print("Motion detected{0}".format(counter))
             send_msg("1447614532010378", "led is on")
