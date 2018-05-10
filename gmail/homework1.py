@@ -8,7 +8,7 @@ import RPi.GPIO as GPIO
 import time
 import multiprocessing as mp
 app = Flask(__name__)
-
+check = 0
 ACCESS_TOKEN = "EAAClXHJ0bQkBAG8JrgjTvfiEiWBLciUdPPZBbak6pUTZB7eZAJ6HYtwgYYoBRTP9hxYIunbAKXtiQRPdZBjZC0xu7IDJu3ZA9ZA2ZBowh1RLzE7wFAQmZANMP47dQlt5zEQxPU2nquUeZCZA9DjZC5Pi43i1ZBFtXOYa67GArkoXtVAAyyQZDZD"
 @app.route('/', methods=['GET'])
 def verify():
@@ -33,6 +33,7 @@ def webhook():
                     if message_text == "turn off led":
                         LED.Setup(2,"OUT")
                         LED.TurnOffLED(2)
+                        global check = 0
                         send_msg("1447614532010378", "turn off led")
 
                     #print(message_text)
@@ -67,14 +68,16 @@ def setup(GPIOnum):
     GPIO.setmode(GPIO.BCM)
     GPIO.setup(GPIOnum, GPIO.IN, pull_up_down = GPIO.PUD_DOWN)
 counter = 0
+
 def motion(GPIOnum):
-    global counter
+    global counter,check
     if GPIO.input(GPIOnum):
         counter += 1
-        if GPIO.output(2) is not True:
+        if check = 0:
             turnOnOffLED(2,GPIO.input(26))
             print("Motion detected{0}".format(counter))
             send_msg("1447614532010378", "led is on")
+            check = 1
         else:
             print("Motion detected{0} but is already light up".format(counter))
     else:
