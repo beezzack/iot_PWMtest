@@ -14,7 +14,7 @@ def verify():
         if not request.args.get("hub.verify_token") == "Educational_Robots_and_Iots" :
             return "Verification token mismatch", 403
         return request.args["hub.challenge"], 200
-    return "Hello woeld", 200
+    return "Hello world", 200
 
 @app.route("/", methods=['POST'])
 def webhook():
@@ -31,7 +31,7 @@ def webhook():
                     if message_text == "turn on led":
                         LED.Setup(2,"OUT")
                         LED.TurnOnLED(2)
-                        send_msg("", "Hi there")
+                        send_msg("1447614532010378", "Hi there")
                     else:
                         LED.Setup(2,"OUT")
                         LED.TurnOffLED(2)
