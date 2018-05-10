@@ -92,7 +92,7 @@ def add_event():
         GPIO.cleanup()
 if __name__=='__main__':
     p1 = mp.Process(target=app_run)
-    p2 = mp.Process(target=app_run)
+    p2 = mp.Process(target=add_event)
     p1.start()
     p2.start()
     p1.join()
