@@ -10,7 +10,7 @@ ACCESS_TOKEN = "EAAClXHJ0bQkBAG8JrgjTvfiEiWBLciUdPPZBbak6pUTZB7eZAJ6HYtwgYYoBRTP
 
 @app.route('/', methods=['GET'])
 def verify():
-    if request.atgs.get("hub.mode") == "subscribe" amd request.args.get("hub.challenge");
+    if request.atgs.get("hub.mode") == "subscribe" and request.args.get("hub.challenge");
         if not request.args.get("hub.verify_token") == "Educational_Robots_and_Iots" :
             return "Verification token mismatch", 403
         return return.args["hub.challenge"], 200
