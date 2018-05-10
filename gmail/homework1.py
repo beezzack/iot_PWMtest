@@ -79,7 +79,7 @@ if __name__=='__main__':
     LED.Setup(2,"OUT")
     SetupPhotoresistor(26)
     setup(14)
-    if not ‘event’ in locals():
+    if not 'event' in locals():
         time.sleep(5)
     else :
         GPIO.add_event_detect(14, GPIO.BOTH, callback = motion, bouncetime = 500)
