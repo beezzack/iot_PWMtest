@@ -20,6 +20,7 @@ def verify():
 
 @app.route("/", methods=['POST'])
 def webhook():
+    global check
     data = request.get_json()
 
     if data["object"] == "page":
@@ -33,7 +34,7 @@ def webhook():
                     if message_text == "turn off led":
                         LED.Setup(2,"OUT")
                         LED.TurnOffLED(2)
-                        global check = 0
+                        check = 0
                         send_msg("1447614532010378", "turn off led")
 
                     #print(message_text)
