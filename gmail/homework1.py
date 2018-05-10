@@ -44,7 +44,7 @@ def send_msg(recipient_id, message_text):
         "message":{"text": message_text}
     }
     resp = requests.post("https://graph.facebook.com/v2.12/me/messages?access_token="+ ACCESS_TOKEN, json=data)
-    print(resp.content)
+    #print(resp.content)
 
 def log(message):
     #print(message)
@@ -79,7 +79,10 @@ if __name__=='__main__':
     LED.Setup(2,"OUT")
     SetupPhotoresistor(26)
     setup(14)
-    GPIO.add_event_detect(14, GPIO.BOTH, callback = motion, bouncetime = 500)
+    if not ‘event’ in locals():
+        time.sleep(5)
+    else :
+        GPIO.add_event_detect(14, GPIO.BOTH, callback = motion, bouncetime = 500)
     app.run(debug=True, port=80)
     while True:
         time.sleep(20)
