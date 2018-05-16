@@ -1,5 +1,6 @@
 import paho.mqtt.client as mqtt
 import RPi.GPIO as GPIO
+import time
 
 TopicServerIP = "192.168.1.30"
 TopicServerPort = 1883
