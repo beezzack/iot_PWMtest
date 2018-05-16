@@ -1,6 +1,6 @@
 import paho.mqtt.client as mqtt
 import PhotoResistorDigitalSignal as PR
-import RPi.GPIO as GPIOnum
+import RPi.GPIO as GPIO
 PR.SetupPhotoresistor(2)
 
 TopicServerIP = "localhost"
