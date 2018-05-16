@@ -1,4 +1,4 @@
-import paha.mqtt.client as mqtt
+import paho.mqtt.client as mqtt
 import PhotoResistorDigitalSignal as PR
 import RPi.GPIO as GPIOnum
 PR.SetupPhotoresistor(2)
