@@ -11,7 +11,8 @@ def on_connect(client, userdata, flags, rc):
 def on_message(client, userdata, msg):
     print(msg.topic+" "+str(msg.payload))
     outputstring = msg.topic+" "+str(msg.payload)+"\n\t"
-    server.sendto(outputstring.encode('utf-8'),(addr[0],addr[1]))
+    byt = outputstring.encode
+    server.send(byt)
 
 
 
