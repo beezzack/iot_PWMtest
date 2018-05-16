@@ -5,7 +5,7 @@ TopicServerIP = "192.168.1.30"
 TopicServerPort = 1883
 TopicName = "PIR"
 
-mqttc = mqtt.Client("homework_pub")
+mqttc = mqtt.Client("python_pub")
 mqttc.connect(TopicServerIP,TopicServerPort)
 
 def setup(GPIOnum):
