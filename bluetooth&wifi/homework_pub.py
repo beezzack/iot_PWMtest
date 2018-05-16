@@ -16,7 +16,7 @@ def motion(GPIOnum):
     mqttc.publish(TopicName, "milktea for sale")
 
 if __name__ == "__main__":
-    setup(4)
+    setup(14)
 try:
     GPIO.add_event_detect(14, GPIO.BOTH, callback = motion, bouncetime = 500)
     while True:
