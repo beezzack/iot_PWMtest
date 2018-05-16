@@ -5,7 +5,7 @@ import time
 TopicServerIP = "192.168.1.30"
 TopicServerPort = 1883
 TopicName = "PIR"
-
+counter = 0
 mqttc = mqtt.Client("python_pub")
 mqttc.connect(TopicServerIP,TopicServerPort)
 
@@ -14,7 +14,15 @@ def setup(GPIOnum):
     GPIO.setup(GPIOnum, GPIO.IN, pull_up_down = GPIO.PUD_DOWN)
 
 def motion(GPIOnum):
-    mqttc.publish(TopicName, "milktea for sale")
+    global counter
+    if GPIO.input(GPIOnum):
+        counter += 1
+        turnOnOffLED(2,GPIO.input(26))
+        print("Motion detected{0}".format(counter))
+        mqttc.publish(TopicName, "milktea for sale")
+
+    else:
+        print("Motion not detected")
 
 if __name__ == "__main__":
     setup(14)
