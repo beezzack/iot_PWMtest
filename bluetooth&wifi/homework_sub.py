@@ -12,7 +12,7 @@ def on_message(client, userdata, msg):
     print(msg.topic+" "+str(msg.payload))
     outputstring = msg.topic+" "+str(msg.payload)+"\n\t"
     byt = outputstring.encode()
-    server.send(byt)
+    conn_client.send(byt)
 
 
 
@@ -23,7 +23,7 @@ if __name__ == "__main__":
     server.listen(5)
     print('Listening on %s:%d' %(bind_ip, bind_port))
     try:
-        client, addr = server.accept()
+        conn_client, addr = server.accept()
         print('Accepted connection from: %s:%d' %(addr[0], addr[1]))
         client = mqtt.Client()
         client.on_connect = on_connect
