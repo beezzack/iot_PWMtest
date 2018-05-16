@@ -17,7 +17,6 @@ def motion(GPIOnum):
     global counter
     if GPIO.input(GPIOnum):
         counter += 1
-        turnOnOffLED(2,GPIO.input(26))
         print("Motion detected{0}".format(counter))
         mqttc.publish(TopicName, "milktea for sale")
 
