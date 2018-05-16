@@ -1,5 +1,6 @@
 import paho.mqtt.client as mqtt
 import socket
+import RPi.GPIO as GPIO
 bind_ip = '192.168.1.30'
 bind_port = 8888
 
@@ -9,7 +10,7 @@ def on_connect(client, userdata, flags, rc):
 
 def on_message(client, userdata, msg):
     print(msg.topic+" "+str(msg.payload))
-    server.send(msg.payload)
+    server.send(str(msg.payload)+"\n")
 
 
 
