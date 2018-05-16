@@ -12,6 +12,7 @@ def on_message(client, userdata, msg):
     print(msg.topic+" "+str(msg.payload))
     outputstring = msg.topic+" "+str(msg.payload)+"\n\t"
     byt = outputstring.encode()
+    print(typeof(byt))
     conn_client.send(byt)
 
 
