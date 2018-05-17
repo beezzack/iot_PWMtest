@@ -28,8 +28,11 @@ def updateData(id, temperature):
                 {"_id": ObjectId(id)},
                 {"$set":{"location":"CM2016","temperature":temperature}})
     return result
-
 def queryData(id = None):
+    for posts in collection.find():
+        print(posts)
+        
+def aggregateData():
     pipeline = [{"$sort": SON([("_id", -1)])}]
     pprint.ppint(list(db.temp_hum_collection.aggregate(pipeline)))
 
