@@ -8,12 +8,12 @@ import pprint
 sensor = Adafruit_DHT.DHT11
 GPIO = 2
 humidity, temperature = Adafruit_DHT.read_retry(sensor,GPIO)
-client = MongoClient('localhost', 270170)
+client = MongoClient('127.0.0.1',27017)
 
 db = client['temp_hum_database']
 collection = db['temp_hum_collection']
 
-def inserData(temperature, humidity, datatime):
+def insertData(temperature, humidity, datatime):
     post = {"location": "home",
             "temperature": temperature,
             "humidity": humidity,
