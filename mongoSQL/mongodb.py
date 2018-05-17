@@ -1,7 +1,7 @@
 from pymongo import MongoClient
 import datetime
 import Adafruit_DHT
-from bson.objectid import objectId
+from bson.objectid import ObjectId
 from bson.son import SON
 import pprint
 
