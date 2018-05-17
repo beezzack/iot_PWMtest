@@ -18,8 +18,10 @@ try:
     while True:
         data = client.recv(1024)
         print(data)
-        if data == b'ture on led':
+        if data == b'turn on led':
             LED.TurnOnLED(14)
+        else :
+            LED.TurnOffLED(14)
 
 except KeyboardInterrupt:
     client.close()
