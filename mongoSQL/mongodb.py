@@ -31,10 +31,10 @@ def updateData(id, temperature):
 def queryData(id = None):
     for posts in collection.find():
         print(posts)
-        
+
 def aggregateData():
     pipeline = [{"$sort": SON([("_id", -1)])}]
-    pprint.ppint(list(db.temp_hum_collection.aggregate(pipeline)))
+    pprint.pprint(list(db.temp_hum_collection.aggregate(pipeline)))
 
 def deleteData(id):
     result = collection.delete_one({"_id": ObjectId(id)})
