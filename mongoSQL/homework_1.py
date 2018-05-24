@@ -6,8 +6,8 @@ import threading
 
 sensor = Adafruit_DHT.DHT11
 GPIO = 2
-humidity = 0
-temperature = 0
+humidity
+temperature
 
 source = ColumnDataSource(data = dict(x=[], temp=[]))
 
