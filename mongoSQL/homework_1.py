@@ -6,8 +6,8 @@ import threading
 
 sensor = Adafruit_DHT.DHT11
 GPIO = 2
-humidity
-temperature
+humidity = 0
+temperature = 0
 
 source = ColumnDataSource(data = dict(x=[], temp=[]))
 
@@ -25,6 +25,7 @@ def getTemp():
     global temperature,humidity
     while True:
         humidity, temperature = Adafruit_DHT.read_retry(sensor, GPIO)
+        print(temperature)
 
 def update_data():
     global ct, temperature
