@@ -42,3 +42,4 @@ def deleteData(id):
 
 if __name__ == "__main__":
     aggregateData()
+    print(queryData())
