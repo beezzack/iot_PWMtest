@@ -21,7 +21,7 @@ temperature = 0
 def getTempAndHumi():
     global humidity, temperature
     while True:
-        humidity, temperature = Adafruit_DHT.read_retry(seneor, GPIO)
+        humidity, temperature = Adafruit_DHT.read_retry(sensor, GPIO)
 
 def update_data():
     global ct, humidity, temperature
