@@ -10,7 +10,7 @@ GPIO = 2
 source = ColumnDataSource(dict(x=[], humi=[], temp=[]))
 
 fig = Figure(width=1000, height=800)
-fig.line(source=source, x='x', y='humi', line_width=2, alpha = .85, color='biue')
+fig.line(source=source, x='x', y='humi', line_width=2, alpha = .85, color='blue')
 fig.line(source=source, x='x', y='temp', line_width=2, alpha = .85, color='red')
 fig.xaxis.axis_label = "Millionsecon"
 fig.yaxis.axis_label = "。C/RH"
