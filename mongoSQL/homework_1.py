@@ -11,7 +11,7 @@ temperature = 0
 
 source = ColumnDataSource(data = dict(x=[], temp=[]))
 booleans = [True if temp_val > 30 else False for temp_val in source.data['temp']]
-view = CDSView(source=source, filter = [BooleanFilter(booleans)])
+view = CDSView(source=source, filters = [BooleanFilter(booleans)])
 
 fig = Figure(width=1000, height=800)
 ct = 0
