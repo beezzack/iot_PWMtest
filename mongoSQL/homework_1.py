@@ -8,9 +8,10 @@ sensor = Adafruit_DHT.DHT11
 GPIO = 2
 
 source = ColumnDataSource(data = dict(x=[], temp=[]))
-booleans  = [True if temp_val >= 28 else False for temp_val in source.data['temp']]
-view1 = CDSView(source = source, filters = [BooleanFilter(booleans)])
-view2 = CDSView(source = source, filters = [BooleanFilter(!(booleans))])
+booleans_1  = [True if temp_val >= 28 else False for temp_val in source.data['temp']]
+booleans_2  = [True if temp_val < 28 else False for temp_val in source.data['temp']]
+view1 = CDSView(source = source, filters = [BooleanFilter(booleans_1)])
+view2 = CDSView(source = source, filters = [BooleanFilter(booleans_2)])
 fig = Figure(width=1000, height=800)
 fig.line(source=source, x='x', y='temp', line_width=2, alpha = .85, color='blue')
 fig.circle(source = source, x='x', y = 'temp',size = 10, color = 'red', view=view1)
