@@ -32,5 +32,6 @@ def queryData(id = None):
 if __name__ == "__main__":
     while True:
         time.sleep(3)
-        insertData(temperature,humidity,datatime)
+        now = datatime.datatime.utcnow()
+        insertData(temperature,humidity,now)
         queryData();
