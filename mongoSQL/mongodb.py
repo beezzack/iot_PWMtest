@@ -12,13 +12,13 @@ client = MongoClient('localhost',27017)
 
 db = client['temp_hum_database']
 collection = db['temp_hum_collection']
+collection.stats
 
 def insertData(temperature, humidity, datatime):
     post = {"location": "home",
             "temperature": temperature,
             "humidity": humidity,
-            "data": datatime.datatime.utcnow()
-    }
+            "data": datatime.datatime.utcnow()}
 
     post_id = collection.insert_one(post).inserted_id
     print(post_id)
@@ -42,5 +42,8 @@ def deleteData(id):
     return result
 
 if __name__ == "__main__":
+    while true:
+        insertData(temperaturem,humidity, currentTime, datetime)
+    
     aggregateData()
-    print(queryData())
+
