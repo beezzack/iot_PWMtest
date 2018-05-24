@@ -6,14 +6,13 @@ import threading
 
 sensor = Adafruit_DHT.DHT11
 GPIO = 2
+humidity = 0
+temperature = 0
 
 source = ColumnDataSource(data = dict(x=[], temp=[]))
 fig = Figure(width=1000, height=800)
 ct = 0
-humidity = 0
-temperature = 0
-print(temperature)
-if temperature > 30:
+if source.data['temp'] > 30:
     fig.line(source=source, x='x', y='temp', line_width=2, alpha = .85, color='blue')
     fig.circle(source = source, x='x', y = 'temp',size = 10, color = 'red')
 else:
@@ -22,7 +21,6 @@ else:
 
 fig.xaxis.axis_label = "Millionsecon"
 fig.yaxis.axis_label = "。C"
-
 
 def getTemp():
     global temperature,humidity
