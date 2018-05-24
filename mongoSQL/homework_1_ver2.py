@@ -12,7 +12,8 @@ import threading
 
 sensor = Adafruit_DHT.DHT11
 GPIO = 2
-humidity, temperature = 0
+humidity = 0 
+temperature = 0
 ct = 0
 client = MongoClient('localhost',27017)
 source = ColumnDataSource(data = dict(x=[], temp=[]))
