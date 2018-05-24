@@ -37,7 +37,7 @@ def queryData(id = None):
         update_data(temperature)
         if temperature > 30:
             red()
-        else
+        else:
             blue()
 def red():
     fig.circle(source = source, x='x', y = 'temp',size = 10, color = 'red')
