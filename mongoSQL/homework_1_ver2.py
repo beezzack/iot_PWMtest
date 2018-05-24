@@ -12,7 +12,7 @@ import threading
 
 sensor = Adafruit_DHT.DHT11
 GPIO = 2
-humidity, temperature = Adafruit_DHT.read_retry(sensor,GPIO)
+humidity, temperature = 0
 ct = 0
 client = MongoClient('localhost',27017)
 source = ColumnDataSource(data = dict(x=[], temp=[]))
@@ -22,6 +22,10 @@ db = client['temp_hum_database']
 collection = db['temp_hum_collection']
 collection.stats
 
+def getTemp():
+    global temperature,humidity
+    while True:
+        humidity, temperature = Adafruit_DHT.read_retry(sensor, GPIO)
 def insertData(temperature, humidity, datatime):
     post = {"location": "home",
             "temperature": temperature,
@@ -57,6 +61,7 @@ if __name__ == "__main__":
     fig.xaxis.axis_label = "Millionsecon"
     fig.yaxis.axis_label = "。C"
 
+    threading.Thread(target = getTemp).start()
     curdoc().add_root(fig)
     curdoc().add_periodic_callback(update_data, 1000)
     while True:
