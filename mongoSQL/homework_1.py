@@ -10,8 +10,11 @@ GPIO = 2
 source = ColumnDataSource(data = dict(x=[], temp=[]))
 fig = Figure(width=1000, height=800)
 fig.line(source=source, x='x', y='temp', line_width=2, alpha = .85, color='blue')
-fig.circle(source = source, x='x', y = 'temp',size = 10, color = 'blue')
-fig.circle(source = source, x='x', y = 'temp',size = 10, color = 'red')
+if temperature > 30:
+    fig.circle(source = source, x='x', y = 'temp',size = 10, color = 'red')
+else:
+    fig.circle(source = source, x='x', y = 'temp',size = 10, color = 'blue')
+
 fig.xaxis.axis_label = "Millionsecon"
 fig.yaxis.axis_label = "。C"
 ct = 0
@@ -19,7 +22,7 @@ humidity = 0
 temperature = 0
 
 def getTemp():
-    global temperature
+    global temperature,humidity
     while True:
         humidity, temperature = Adafruit_DHT.read_retry(sensor, GPIO)
 
