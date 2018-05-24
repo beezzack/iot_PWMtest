@@ -10,14 +10,14 @@ humidity = 0
 temperature = 0
 
 source = ColumnDataSource(data = dict(x=[], temp=[]))
+booleans = [True if temp_val > 30 else False for temp_val in source.data['temp']]
+view = CDSView(source=source, filter = [BooleanFilter(booleans)])
+
 fig = Figure(width=1000, height=800)
 ct = 0
-if source.data['temp'] > 30:
-    fig.line(source=source, x='x', y='temp', line_width=2, alpha = .85, color='blue')
-    fig.circle(source = source, x='x', y = 'temp',size = 10, color = 'red')
-else:
-    fig.line(source=source, x='x', y='temp', line_width=2, alpha = .85, color='blue')
-    fig.circle(source = source, x='x', y = 'temp',size = 10, color = 'blue')
+fig.line(source=source, x='x', y='temp', line_width=2, alpha = .85, color='blue')
+fig.circle(source = source, x='x', y = 'temp',size = 10, color = 'blue')
+fig.circle(source = source, x='x', y = 'temp',size = 10, color = 'red', view = view)
 
 fig.xaxis.axis_label = "Millionsecon"
 fig.yaxis.axis_label = "。C"
