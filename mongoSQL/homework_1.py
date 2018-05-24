@@ -12,11 +12,14 @@ fig = Figure(width=1000, height=800)
 ct = 0
 humidity = 0
 temperature = 0
+print(temperature)
 if temperature > 30:
+    fig.line(source=source, x='x', y='temp', line_width=2, alpha = .85, color='blue')
     fig.circle(source = source, x='x', y = 'temp',size = 10, color = 'red')
 else:
+    fig.line(source=source, x='x', y='temp', line_width=2, alpha = .85, color='blue')
     fig.circle(source = source, x='x', y = 'temp',size = 10, color = 'blue')
-fig.line(source=source, x='x', y='temp', line_width=2, alpha = .85, color='blue')
+
 fig.xaxis.axis_label = "Millionsecon"
 fig.yaxis.axis_label = "。C"
 
