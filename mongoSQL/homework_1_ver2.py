@@ -13,6 +13,7 @@ import threading
 sensor = Adafruit_DHT.DHT11
 GPIO = 2
 humidity, temperature = Adafruit_DHT.read_retry(sensor,GPIO)
+ct = 0
 client = MongoClient('localhost',27017)
 source = ColumnDataSource(data = dict(x=[], temp=[]))
 fig = Figure(width=1000, height=800)
@@ -52,7 +53,6 @@ def update_data(temperature):
     source.stream(new_data, 10)
 
 if __name__ == "__main__":
-    global temperature,humidity
     fig.line(source=source, x='x', y='temp', line_width=2, alpha = .85, color='blue')
     fig.xaxis.axis_label = "Millionsecon"
     fig.yaxis.axis_label = "。C"
