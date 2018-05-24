@@ -3,7 +3,7 @@ from bluetooth import *
 PORT = 3
 client_socket = BluetoothSocket(RFCOMM)
 
-client_socket.connect(('', PORT))
+client_socket.connect(("B8:27:EB:9F:8A:76", PORT))
 
 while True:
     senddata = input()
