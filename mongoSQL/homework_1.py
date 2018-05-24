@@ -9,6 +9,9 @@ GPIO = 2
 
 source = ColumnDataSource(data = dict(x=[], temp=[]))
 fig = Figure(width=1000, height=800)
+ct = 0
+humidity = 0
+temperature = 0
 fig.line(source=source, x='x', y='temp', line_width=2, alpha = .85, color='blue')
 if temperature > 30:
     fig.circle(source = source, x='x', y = 'temp',size = 10, color = 'red')
@@ -17,9 +20,7 @@ else:
 
 fig.xaxis.axis_label = "Millionsecon"
 fig.yaxis.axis_label = "。C"
-ct = 0
-humidity = 0
-temperature = 0
+
 
 def getTemp():
     global temperature,humidity
