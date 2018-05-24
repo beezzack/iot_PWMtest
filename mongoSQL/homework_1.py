@@ -1,5 +1,5 @@
 from bokeh.io import curdoc
-from bokeh.models import ColumnDataSource,CDSView, GroupFilter
+from bokeh.models import ColumnDataSource,CDSView, BooleanFilter
 from bokeh.plotting import Figure
 import Adafruit_DHT
 import threading
