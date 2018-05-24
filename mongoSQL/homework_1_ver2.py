@@ -19,7 +19,7 @@ def insertData(temperature, humidity, datatime):
     post = {"location": "home",
             "temperature": temperature,
             "humidity": humidity,
-            "data": datatime.datatime.utcnow()}
+            "data": datetime.datetime.utcnow()}
 
     post_id = collection.insert_one(post).inserted_id
     print(post_id)
@@ -32,6 +32,6 @@ def queryData(id = None):
 if __name__ == "__main__":
     while True:
         time.sleep(3)
-        now = datatime.datatime.utcnow()
+        now = datetime.datetime.utcnow()
         insertData(temperature,humidity,now)
         queryData();
