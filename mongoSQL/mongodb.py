@@ -8,7 +8,7 @@ import pprint
 sensor = Adafruit_DHT.DHT11
 GPIO = 2
 humidity, temperature = Adafruit_DHT.read_retry(sensor,GPIO)
-client = MongoClient('127.0.0.1',27017)
+client = MongoClient('localhost',27017)
 
 db = client['temp_hum_database']
 collection = db['temp_hum_collection']
@@ -28,6 +28,7 @@ def updateData(id, temperature):
                 {"_id": ObjectId(id)},
                 {"$set":{"location":"CM2016","temperature":temperature}})
     return result
+
 def queryData(id = None):
     for posts in collection.find():
         print(posts)
