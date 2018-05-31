@@ -1,13 +1,13 @@
-im[prt RPi.GPIO as GPIO
+import RPi.GPIO as GPIO
 from time import sleep
 
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(2, GPIO.OUT)
+GPIO.setup(3, GPIO.OUT)
 pwm = GPIO.PWM(3,50)
 pwm.start(0)
 GPIO.output(3, True)
 
-def SetAngle(angle)
+def SetAngle(angle):
     dutyCycle= 1/20 * angle + 3
     pwm.ChangeDutyCycle(dutyCycle)
     sleep(1)
