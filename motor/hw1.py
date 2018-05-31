@@ -9,7 +9,10 @@ def setup(GPIOnum):
 
 
 counter = 0
-
+def SetAngle(angle):
+    dutyCycle = 1/20 * angle + 3
+    pwm.ChangeDutyCycle(dutyCycle)
+    sleep(1)
 def motion(GPIOnum):
     global counter
 
