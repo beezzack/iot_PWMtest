@@ -31,6 +31,7 @@ def motion(GPIOnum):
 
 if __name__ == "__main__":
     try:
+        GPIO.setmode(GPIO.BCM)
         GPIO.setup(3, GPIO.OUT)
         pwm=GPIO.PWM(3, 50)
         pwm.start(0)
