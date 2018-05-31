@@ -2,7 +2,7 @@ import RPi.GPIO as GPIO
 import Adafruit_DHT
 import time
 
-GPIO_setmode(GPIO.BCM)
+GPIO.setmode(GPIO.BCM)
 
 GPIO_TRIGGER=7
 GPIO_ECHO=12
@@ -19,8 +19,8 @@ def send_trigger_pulse():
 
 def get_speed():
     humidity, temperature=Adafruit_DHT.read_retry(sensor, GPIO_TEMP)
-    speed = 33100 + temperature*60
-    return get_speed
+    speed = 33100 + temperature * 60
+    return speed
 
 def distance(speed):
     send_trigger_pulse()
@@ -32,17 +32,17 @@ def distance(speed):
         StopTime = time.time()
 
     TimeElapsed = StopTime - StartTime
-    distance = (TimeElapsed * speed)/2
+    distancenum = (TimeElapsed*speed)/2
 
-    return distance
+    return distancenum
 
 if __name__ == '__main__':
     try:
         while True:
             speed = get_speed()
             dist = distance(speed)
-            print("Measured Distance = %.1f cm" %dist)
+            print("Measured Distance = %.1f cm" % dist)
             time.sleep(1)
-        except KeyboardInterrupt:
+    except KeyboardInterrupt:
             print("Measurement stopped by User")
-            GPIO.sleanup()
+            GPIO.cleanup()
