@@ -2,6 +2,9 @@ import RPi.GPIO as GPIO
 import Adafruit_DHT
 import time
 import LED
+import sys,pygame
+pygame.init()
+pygame.mixer.music.load("beep.mp3")
 
 GPIO.setmode(GPIO.BCM)
 
@@ -62,6 +65,7 @@ if __name__ == '__main__':
             else:
                 if velocity >= 50:
                     LED.TurnOnLED(GPIO_LED)
+                    pygame.mixer.music.play(3)
                 else:
                     LED.TurnOffLED(GPIO_LED)
             print('velocity:', str(velocity)+ 'cm/sec')
