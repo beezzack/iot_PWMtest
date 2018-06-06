@@ -8,7 +8,7 @@ GPIO.setmode(GPIO.BCM)
 GPIO_TRIGGER=7
 GPIO_ECHO=12
 GPIO_TEMP=4
-GPIO_LED = 21
+GPIO_LED = 13
 
 GPIO.setup(GPIO_TRIGGER, GPIO.OUT)
 GPIO.setup(GPIO_ECHO, GPIO.IN)
@@ -35,13 +35,13 @@ def get_velocity():
         StartTime = time.time()
 
     while GPIO.input(GPIO_ECHO)==1:
-        StopTime = time.time()
+        StopTime1 = time.time()
 
-    TimeElapsed = StopTime - StartTime
+    TimeElapsed = StopTime1 - StartTime
     speed = get_speed()
     distance1 = TimeElapsed * speed * 0.5
 
-    if distance1 < 2 or distance1 > 400
+    if distance1 < 2 or distance1 > 400 :
         dist_error = True
     else:
         dist_error = False
@@ -60,11 +60,12 @@ if __name__ == '__main__':
             if dist_error:
                 print('Range Error: Range 2-400 cm')
             else:
-                if velocity > 50:
+                if velocity >= 50:
                     LED.TurnOnLED(GPIO_LED)
                 else:
                     LED.TurnOffLED(GPIO_LED)
-                print('velocity:', str(velocity)+ 'cm/sec')
+            print('velocity:', str(velocity)+ 'cm/sec')
+            time.sleep(1)
     except KeyboardInterrupt:
             print("Measurement stopped by User")
             GPIO.cleanup()

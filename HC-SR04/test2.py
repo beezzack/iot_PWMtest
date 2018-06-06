@@ -32,13 +32,13 @@ def get_velocity():
         StartTime = time.time()
 
     while GPIO.input(GPIO_ECHO)==1:
-        StopTime = time.time()
+        StopTime1 = time.time()
 
-    TimeElapsed = StopTime - StartTime
+    TimeElapsed = StopTime1 - StartTime
     speed = get_speed()
     distance1 = TimeElapsed * speed * 0.5
 
-    if distance1 < 2 or distance1 > 400
+    if distance1 < 2 or distance1 > 400 :
         dist_error = True
     else:
         dist_error = False
