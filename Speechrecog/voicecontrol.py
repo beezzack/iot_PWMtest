@@ -1,4 +1,4 @@
-import sppech_recognition as sr
+import speech_recognition as sr
 import LED
 
 r=sr.Reconizer()
