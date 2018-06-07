@@ -1,7 +1,7 @@
 import speech_recognition as sr
 import LED
 
-r=sr.Reconizer()
+r=sr.Recognizer()
 r.energy_threshold = 4000
 LED.Setup(2,"OUT")
 
