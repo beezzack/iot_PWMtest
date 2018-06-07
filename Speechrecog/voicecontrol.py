@@ -10,11 +10,11 @@ while True:
         audio = r.listen(source)
 
     try:
-        my_stt = r.recognize_google(audio, language = "en-US")
+        my_stt = r.recognize_google(audio, language = "zh-tw")
 
-        if my_stt == "turn on LED":
+        if my_stt == "打開":
             LED.TurnOnLED(2)
-        elif my_stt == "turn off LED":
+        elif my_stt == "關掉":
             LED.TurnOffLED(2)
         print(my_stt)
 
