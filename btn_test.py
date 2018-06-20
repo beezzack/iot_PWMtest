@@ -3,8 +3,8 @@ import time
 
 gpio.setmode(gpio.BCM)
 
-btn = 4
-gpio.setup(4,gpio.IN, pull_up_down = gpio.PUD_UP)
+btn = [4, 17]
+gpio.setup(4,gpio.IN)
 
 try:
     starttime = time.time()
@@ -12,7 +12,7 @@ try:
         time.sleep(1)
 
         #if(gpio.input(btn) == 0):
-        print(str(gpio.input(btn))+", "+str(time.time()-starttime))
+        print(str(gpio.input(btn[0]))+", "+str(time.time()-starttime))
 
 except KeyboardInterrupt:
     pass
