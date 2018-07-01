@@ -9,8 +9,8 @@ from time import sleep
 
 GPIO.setmode(GPIO.BCM)
 
-GPIO_TRIGGER=7
-GPIO_ECHO=12
+GPIO_TRIGGER=14
+GPIO_ECHO=15
 
 GPIO.setup(GPIO_TRIGGER, GPIO.OUT)
 GPIO.setup(GPIO_ECHO, GPIO.IN)
@@ -18,7 +18,7 @@ GPIO.setup(GPIO_ECHO, GPIO.IN)
 GPIO.setup(3, GPIO.OUT)
 pwm = GPIO.PWM(3,50)
 pwm.start(0)
-GPIO.output(3, True)
+#GPIO.output(3, True)
 #/********************************/
 def SetAngle(angle):
     dutyCycle= 1/20 * angle + 3
@@ -53,6 +53,7 @@ if __name__ == '__main__':
             speed = get_speed()
             dist = distance(speed)
             print("Measured Distance = %.1f cm" % dist)
+    
             if dist>=14:
                 SetAngle(0)
             elif dist > 12 and dist <= 14:
@@ -68,6 +69,7 @@ if __name__ == '__main__':
             else:
                 SetAngle(180)
             time.sleep(1)
+            
     except KeyboardInterrupt:
             print("Measurement stopped by User")
             GPIO.cleanup()
