@@ -5,13 +5,7 @@ from time import sleep
 
 
 
-def SetAngle(angle):
-    dutyCycle= 1/20 * angle + 3
-    pwm.ChangeDutyCycle(dutyCycle)
-    sleep(1)
-    pwm.ChangeDutyCycle(0)
-    pwm.stop()
-    GPIO.cleanup()
+
 
 GPIO.setmode(GPIO.BCM)
 
@@ -26,6 +20,12 @@ pwm = GPIO.PWM(3,50)
 pwm.start(0)
 GPIO.output(3, True)
 #/********************************/
+def SetAngle(angle):
+    dutyCycle= 1/20 * angle + 3
+    pwm.ChangeDutyCycle(dutyCycle)
+    sleep(1)
+    pwm.ChangeDutyCycle(0)
+    pwm.stop()
 
 def send_trigger_pulse():
     GPIO.output(GPIO_TRIGGER ,True)
