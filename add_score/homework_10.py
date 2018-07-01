@@ -23,9 +23,6 @@ GPIO.output(3, True)
 def SetAngle(angle):
     dutyCycle= 1/20 * angle + 3
     pwm.ChangeDutyCycle(dutyCycle)
-    sleep(1)
-    pwm.ChangeDutyCycle(0)
-    pwm.stop()
 
 def send_trigger_pulse():
     GPIO.output(GPIO_TRIGGER ,True)
@@ -74,3 +71,4 @@ if __name__ == '__main__':
     except KeyboardInterrupt:
             print("Measurement stopped by User")
             GPIO.cleanup()
+            pwm.stop()
